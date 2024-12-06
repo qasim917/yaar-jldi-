@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table Generator</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+</head>
+<body class="bg-secondary">
+
+    <div class="container my-5">
+        <div class="row justify-content-center" style="height: 100vh;">
+            <div class="col-md-8">
+                <div class="card bg-dark p-5">
+                    <h1 class="text-light text-center">TABLE GENERATOR</h1>
+                    <input id="tn" class="form-control my-2" type="text" placeholder="Write table number">
+                    <input id="tr" class="form-control my-2" type="text" placeholder="Write table range">
+                    <button onclick="generater()" class="btn btn-info my-2 w-100">GENERATE RESULT</button>
+                </div>
+                <div class="card bg-dark text-light p-5 my-2">
+                    <ul id="result-list" class="list-group">
+                        <!-- Results will be displayed here -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function generater() {
+            // Get the input values
+            let tableNumber = document.querySelector('#tn').value;
+            let tableRange = document.querySelector('#tr').value;
+
+            // Convert to numbers
+            tableNumber = Number(tableNumber);
+            tableRange = Number(tableRange);
+
+            // Get the UL element
+            let ulelement = document.querySelector('#result-list');
+            ulelement.innerHTML = ''; // Clear previous results
+
+            // Check if inputs are valid numbers
+            if (isNaN(tableNumber) || isNaN(tableRange)) {
+                ulelement.innerHTML = '<li class="list-group-item text-danger">Please enter valid numbers!</li>';
+                return;
+            }
+
+            // Generate the table
+            for (let i = 1; i <= tableRange; i++) {
+                let result = tableNumber * i;
+                ulelement.innerHTML += `<li class="list-group-item"> ${tableNumber} x ${i} = ${result} </li>`;
+            }
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Converter</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body class="bg-secondary">
+    <div class="container">
+        <div class="row justify-content-center align-content-center" style="height: 50vh;">
+            <div class="col-md-8">
+                <div class="card bg-dark p-5 rounded rounded-5">
+                    <h1 class="text-light text-center">Currency Converter</h1>
+                    <input id="amount" class="form-control my-2" type="text" placeholder="Enter amount in selected currency">
+                    <input id="currency" class="form-control my-2" type="text" placeholder="Enter currency (USD, GBP, Dinar, Rial)">
+                    <button onclick="convertCurrency()" class="btn btn-info my-2 w-100">Convert to PKR</button>
+                    <h2 id="result" class="text-center display-5 text-dark bg-light rounded rounded-5 my-3"></h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function convertCurrency() {
+            
+            let amount = document.querySelector('#amount').value;
+            let currency = document.querySelector('#currency').value.toUpperCase().trim();
+            let resultElement = document.querySelector('#result');
+
+            let rates = {
+                'USD': 294.12,  
+                'GBP': 357.14,  
+                'DINAR': 1000,  
+                'RIAL': 7.32,   
+            };
+            let convertedAmount = amount * rates[currency];
+            resultElement.textContent = amount + " " + currency + " = " + convertedAmount + " PKR";
+           
+        }
+    </script>
+</body>
+</html>
